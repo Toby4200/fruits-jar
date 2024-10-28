@@ -1,11 +1,10 @@
 'use client';
 
-import { Fruit, FruitsListReducerProvider } from './context/fruitsList';
-import { List } from 'antd';
+import { Fruit } from './context/fruitsList';
 
-import FruitCard from './components/FruitCard';
 import Jar from './components/Jar';
 import { useQuery } from '@tanstack/react-query';
+import TabsWrapper from './components/TabsWrapper';
 
 const getFruits = async () => {
   const response = await fetch(
@@ -40,16 +39,7 @@ export default function FruitsHome() {
         <div id="left" className="w-1/2 p-5">
           <h1 className="mb-5">Fruits</h1>
 
-          <List
-            header={<div>Fruits List</div>}
-            bordered
-            dataSource={fruitsArr}
-            renderItem={(item) => (
-              <List.Item>
-                <FruitCard fruit={item} />
-              </List.Item>
-            )}
-          />
+          <TabsWrapper fruitsArr={fruitsArr} />
         </div>
         <div id="right" className="w-1/2">
           <h1 className="m-5">Jar</h1>
