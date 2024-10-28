@@ -10,9 +10,7 @@ import { Button } from 'antd';
 
 const getFruits = async () => {
   // react query already retrying query and refetching and returns error
-  const response = await fetch(
-    'https://wcz3qr33kmjvzotdqt65efniv40kokon.lambda-url.us-east-2.on.aws'
-  );
+  const response = await fetch('/api/fruits');
   const data = await response.json();
   return data;
 };
