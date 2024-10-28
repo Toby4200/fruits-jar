@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a fruits app
 
 ## Getting Started
 
@@ -13,6 +13,15 @@ pnpm dev
 # or
 bun dev
 ```
+
+## Implemented
+
+[+] Handling request error
+
+## Next tasks to do
+
+[ ] Add Sentry for error handling  
+[ ]
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

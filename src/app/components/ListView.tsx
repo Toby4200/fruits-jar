@@ -79,18 +79,23 @@ export default function ListView({
             header={
               <div className="flex justify-between items-center">
                 <span className="font-medium">{groupName}</span>
-                <span className="text-sm text-gray-500">
-                  {fruitsArr.length}{' '}
-                  {fruitsArr.length === 1 ? 'fruit' : 'fruits'}
-                </span>
-                <Button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    dispatch({ type: ActionType.ADD, payload: [...fruitsArr] });
-                  }}
-                >
-                  Add to jar
-                </Button>
+                <div>
+                  <span className="text-sm text-gray-500 mr-5">
+                    {fruitsArr.length}{' '}
+                    {fruitsArr.length === 1 ? 'fruit' : 'fruits'}
+                  </span>
+                  <Button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      dispatch({
+                        type: ActionType.ADD,
+                        payload: [...fruitsArr],
+                      });
+                    }}
+                  >
+                    Add to jar
+                  </Button>
+                </div>
               </div>
             }
             key={groupName}
