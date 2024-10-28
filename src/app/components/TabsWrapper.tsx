@@ -1,7 +1,7 @@
-import { List, Tabs, TabsProps } from 'antd';
+import { Tabs, TabsProps } from 'antd';
 import { Fruit } from '../context/fruitsList';
-import FruitCard from './FruitCard';
 import TableView from './TableView';
+import ListView from './ListView';
 
 export default function TabsWrapper({
   fruitsArr,
@@ -12,18 +12,7 @@ export default function TabsWrapper({
     {
       key: '1',
       label: 'List',
-      children: (
-        <List
-          header={<div>Fruits List</div>}
-          bordered
-          dataSource={fruitsArr}
-          renderItem={(item) => (
-            <List.Item>
-              <FruitCard fruit={item} />
-            </List.Item>
-          )}
-        />
-      ),
+      children: <ListView fruitsArr={fruitsArr} />,
     },
     {
       key: '2',

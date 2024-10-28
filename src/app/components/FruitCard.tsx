@@ -16,7 +16,7 @@ export default function FruitCard({ fruit }: Props) {
       </div>
 
       <Button
-        onClick={() => dispatch({ type: ActionType.ADD, payload: fruit })}
+        onClick={() => dispatch({ type: ActionType.ADD, payload: [fruit] })}
       >
         Add to jar
       </Button>

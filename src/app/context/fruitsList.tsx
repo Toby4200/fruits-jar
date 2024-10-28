@@ -28,7 +28,7 @@ interface State {
 
 interface AddFruitAction {
   type: ActionType.ADD;
-  payload: Fruit;
+  payload: Fruit[];
 }
 
 interface RemoveFruitAction {
@@ -57,7 +57,7 @@ export const FruitsListContext = createContext<FruitsContextType>({
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case ActionType.ADD:
-      return { ...state, fruits: [...state.fruits, action.payload] };
+      return { ...state, fruits: [...state.fruits, ...action.payload] };
     case ActionType.REMOVE:
       const fruits = state.fruits.filter(
         (fruit, index) => index !== action.payload
