@@ -3,6 +3,7 @@ import { createContext, useReducer, ReactNode, Dispatch } from 'react';
 export enum ActionType {
   ADD = 'add',
   REMOVE = 'remove',
+  REMOVE_ALL = 'removeAll',
 }
 
 interface Nutrition {
@@ -36,8 +37,12 @@ interface RemoveFruitAction {
   payload: number;
 }
 
+interface RemoveAllFruitAction {
+  type: ActionType.REMOVE_ALL;
+}
+
 // Combine them into a union type
-type Action = AddFruitAction | RemoveFruitAction;
+type Action = AddFruitAction | RemoveFruitAction | RemoveAllFruitAction;
 
 interface FruitsContextType {
   state: State;
@@ -63,6 +68,8 @@ const reducer = (state: State, action: Action): State => {
         (fruit, index) => index !== action.payload
       );
       return { ...state, fruits };
+    case ActionType.REMOVE_ALL:
+      return initialState;
     default:
       return state;
   }

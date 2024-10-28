@@ -38,14 +38,17 @@ const FruitsHomeContent = () => {
 
   return (
     <>
+      <header className="h-20 px-5 text-2xl shadow-md mb-5 flex items-center">
+        Fruits APP
+      </header>
       <div id="container" className="flex p-5">
-        <div id="left" className="w-1/2 p-5">
-          <h1 className="mb-5">Fruits</h1>
+        <div id="left" className="w-1/2 px-2">
+          <h1 className="mb-5 text-2xl">Fruits List</h1>
 
           <TabsWrapper fruitsArr={fruitsArr} />
         </div>
-        <div id="right" className="w-1/2">
-          <h1 className="m-5">Jar</h1>
+        <div id="right" className="w-1/2 px-2">
+          <h1 className="m-5 text-2xl">Jar</h1>
 
           <Jar />
         </div>

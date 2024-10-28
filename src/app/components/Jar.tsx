@@ -1,4 +1,4 @@
-import { Card, List, Statistic } from 'antd';
+import { Button, Card, List, Statistic } from 'antd';
 import useFruits from '../hooks/useFruits';
 import JarCard from './JarCard';
 import { useMemo } from 'react';
@@ -12,6 +12,7 @@ import {
   CategoryScale,
   LinearScale,
 } from 'chart.js';
+import { ActionType } from '../context/fruitsList';
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale);
 
@@ -22,6 +23,7 @@ interface TooltipContext {
 
 export default function Jar() {
   const { state } = useFruits();
+  const { dispatch } = useFruits();
 
   const totalCalories = useMemo(() => {
     return state.fruits.reduce(
@@ -125,12 +127,22 @@ export default function Jar() {
         header={
           <div className="flex justify-between items-center">
             <span>Jar</span>
-            {state.fruits.length > 0 && (
-              <span className="text-sm text-gray-500">
-                {state.fruits.length}{' '}
-                {state.fruits.length === 1 ? 'fruit' : 'fruits'}
-              </span>
-            )}
+
+            <div className="">
+              {state.fruits.length > 0 && (
+                <span className="text-sm text-gray-500 mr-5">
+                  {state.fruits.length}{' '}
+                  {state.fruits.length === 1 ? 'fruit' : 'fruits'}
+                </span>
+              )}
+              {state.fruits.length > 0 && (
+                <Button
+                  onClick={() => dispatch({ type: ActionType.REMOVE_ALL })}
+                >
+                  Delete all
+                </Button>
+              )}
+            </div>
           </div>
         }
         bordered
