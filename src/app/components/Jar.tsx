@@ -1,9 +1,6 @@
-import { Button, List } from 'antd';
+import { List } from 'antd';
 import useFruits from '../hooks/useFruits';
-import { ActionType } from '../context/fruitsList';
 import JarCard from './JarCard';
-
-interface Props {}
 
 export default function Jar() {
   const { state } = useFruits();

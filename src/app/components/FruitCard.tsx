@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function FruitCard({ fruit }: Props) {
-  const { state, dispatch } = useFruits();
+  const { dispatch } = useFruits();
 
   return (
     <div className="flex justify-between align w-full">

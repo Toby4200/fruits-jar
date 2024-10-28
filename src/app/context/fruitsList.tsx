@@ -69,8 +69,11 @@ const reducer = (state: State, action: Action): State => {
 };
 
 // provider
-export const FruitsListProvider = ({ children }: { children: ReactNode }) => {
-  // todo Anatoliy question
+export const FruitsListReducerProvider = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
