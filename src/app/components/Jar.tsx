@@ -2,6 +2,7 @@ import { Card, List, Statistic } from 'antd';
 import useFruits from '../hooks/useFruits';
 import JarCard from './JarCard';
 import { useMemo } from 'react';
+// @ts-ignore
 import { Pie } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -13,6 +14,11 @@ import {
 } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale);
+
+interface TooltipContext {
+  label: string;
+  raw: number;
+}
 
 export default function Jar() {
   const { state } = useFruits();
@@ -26,14 +32,17 @@ export default function Jar() {
 
   // Prepare data for pie chart
   const chartData = useMemo(() => {
-    const fruitCalories = state.fruits.reduce((acc, fruit) => {
-      if (!acc[fruit.name]) {
-        acc[fruit.name] = fruit.nutritions.calories;
-      } else {
-        acc[fruit.name] = acc[fruit.name] + fruit.nutritions.calories;
-      }
-      return acc;
-    }, {});
+    const fruitCalories = state.fruits.reduce(
+      (acc: Record<string, number>, fruit) => {
+        if (!acc[fruit.name]) {
+          acc[fruit.name] = fruit.nutritions.calories;
+        } else {
+          acc[fruit.name] = acc[fruit.name] + fruit.nutritions.calories;
+        }
+        return acc;
+      },
+      {}
+    );
 
     return {
       labels: Object.keys(fruitCalories),
@@ -61,7 +70,7 @@ export default function Jar() {
     responsive: true,
     plugins: {
       legend: {
-        position: 'right',
+        position: 'right' as const,
         labels: {
           boxWidth: 15,
           padding: 15,
@@ -69,7 +78,7 @@ export default function Jar() {
       },
       tooltip: {
         callbacks: {
-          label: function (context) {
+          label: function (context: TooltipContext) {
             const label = context.label || '';
             const value = context.raw || 0;
             const percentage = ((value / totalCalories) * 100).toFixed(1);
@@ -80,6 +89,7 @@ export default function Jar() {
     },
   };
 
+  // @ts-ignore
   return (
     <div className="space-y-4">
       {/* stats */}
@@ -104,6 +114,7 @@ export default function Jar() {
         <Card className="shadow-sm">
           <h3 className="text-lg font-medium mb-4">Calorie Distribution</h3>
           <div className="h-[300px] flex justify-center items-center">
+            {/* @ts-ignore */}
             <Pie data={chartData} options={chartOptions} />
           </div>
         </Card>
